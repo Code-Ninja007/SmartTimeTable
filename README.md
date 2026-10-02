@@ -2,7 +2,9 @@
 
 ClassSync keeps your weekly class schedule, subject syllabi, notes, and study suggestions in one place. It is available as a responsive web app and an Android app, with no sign-in required.
 
-[**Download the latest Android APK**](https://github.com/Code-Ninja007/SmartTimeTable/releases/latest/download/ClassSync.apk) · [All APK releases](https://github.com/Code-Ninja007/SmartTimeTable/releases)
+[**Open ClassSync Web App**](https://classsync-virid.vercel.app) · [**Download the latest Android APK**](https://github.com/Code-Ninja007/SmartTimeTable/releases/latest/download/ClassSync.apk) · [All APK releases](https://github.com/Code-Ninja007/SmartTimeTable/releases)
+
+On iPhone or iPad, open the web app in Safari, tap **Share**, then **Add to Home Screen**.
 
 ## Features
 
@@ -53,7 +55,7 @@ Scan the QR code with Expo Go. Android notes are stored locally on that device. 
 
 ### Web on Vercel
 
-Import the repository into Vercel with the repository root as the project root. Set `CLASSYNC_API_URL` to the public Railway API URL (without a trailing slash), then deploy. The web app remains a Next.js app.
+The production web app is available at [classsync-virid.vercel.app](https://classsync-virid.vercel.app). To deploy your own instance, import the repository into Vercel with the repository root as the project root. Set `CLASSYNC_API_URL` to the public Railway API URL (without a trailing slash), then deploy. The web app remains a Next.js app.
 
 ### Gemini API on Railway
 
