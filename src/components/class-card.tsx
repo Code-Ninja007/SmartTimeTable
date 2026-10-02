@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import type { Period } from '@/lib/timetable-data';
 import * as Lucide from 'lucide-react';
 import { NotesDialog } from './notes-dialog';
+import { SyllabusDialog } from './syllabus-dialog';
 import { AiSuggestions } from './ai-suggestions';
 import { cn } from '@/lib/utils';
 import { useCurrentTime } from '@/hooks/use-current-time';
@@ -89,6 +90,7 @@ export const ClassCard: FC<ClassCardProps> = ({ period, day }) => {
             )}
             {isInteractive && (
               <>
+                <SyllabusDialog subject={period.subject} code={period.code} />
                 <NotesDialog subject={period.subject} day={day} code={period.code} />
                 <AiSuggestions subject={period.subject} />
               </>

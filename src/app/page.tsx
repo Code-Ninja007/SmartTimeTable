@@ -1,5 +1,6 @@
 import { TimetableTabs } from '@/components/timetable-tabs';
 import { BookOpenCheck } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -12,6 +13,22 @@ export default function Home() {
               ClassSync
             </h1>
           </div>
+          <a
+            href="https://erp.kit.ac.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open IERP - Kanpur Institute of Technology | AKTU Code: 165"
+            title="IERP - Kanpur Institute of Technology | AKTU Code: 165"
+            className="rounded-sm transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          >
+            <Image
+              src="/kit-erp-logo.png"
+              alt="IERP - Kanpur Institute of Technology | AKTU Code: 165"
+              width="1045"
+              height="318"
+              className="h-9 w-auto max-w-[132px] object-contain"
+            />
+          </a>
         </div>
       </header>
       <main className="flex-1 container mx-auto p-4 md:p-6 lg:p-8">

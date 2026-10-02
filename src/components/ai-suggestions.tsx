@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { type SuggestResourcesOutput } from '@/ai/flows/suggest-resources';
+import { type SuggestResourcesOutput } from '@/lib/suggestions';
 import { getSuggestions } from '@/app/actions/ai-suggestions';
 import { LoadingAnimation } from '@/components/loading-animation';
 import { ScrollArea } from './ui/scroll-area';

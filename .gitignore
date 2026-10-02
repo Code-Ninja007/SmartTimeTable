@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+npm-debug.log*
+.env*
+!.env.example
+.DS_Store
+mobile/.expo
+mobile/dist
+mobile/web-build
+api/node_modules

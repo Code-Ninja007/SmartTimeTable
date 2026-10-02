@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "ClassSync",
+    "slug": "classsync",
+    "version": "1.0.0",
+    "scheme": "classsync",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.codeninja007.classsync",
+      "adaptiveIcon": {
+        "backgroundColor": "#10264a",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png"
+      }
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "defaultChannel": "class-notifications-v2"
+        }
+      ]
+    ],
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3a7825b4-c6b8-4109-9df6-c2a5ced5164e"
+      }
+    }
+  }
+}
