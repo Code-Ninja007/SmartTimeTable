@@ -1,0 +1,19 @@
+{
+  "name": "classsync-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.6"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs"
+  },
+  "dependencies": {
+    "@genkit-ai/googleai": "^1.28.0",
+    "dotenv": "^18.0.5",
+    "genkit": "^1.42.0",
+    "zod": "^3.23.8"
+  }
+}

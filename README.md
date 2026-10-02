@@ -1,46 +1,74 @@
-# ClassSync - Your Smart Timetable
+# ClassSync
 
-ClassSync is a modern, responsive, and intelligent daily class schedule application designed to help students stay organized and on top of their studies. Built with a powerful tech stack, it offers a seamless experience on both desktop and mobile devices.
+ClassSync keeps your weekly class schedule, subject syllabi, notes, and study suggestions in one place. It is available as a responsive web app and an Android app, with no sign-in required.
+
+[**Download the latest Android APK**](https://github.com/Code-Ninja007/SmartTimeTable/releases/latest/download/ClassSync.apk) · [All APK releases](https://github.com/Code-Ninja007/SmartTimeTable/releases)
 
 ## Features
 
-- **Daily Timetable View:** Cleanly displays your class schedule for each day of the week.
-- **Responsive Design:** A mobile-first design ensures the application is easy to use on any device. It features a tab-based view for desktops and a sleek dropdown menu for mobile.
-- **Day/Night Mode:** Includes a stylish theme toggle to switch between light and dark modes for comfortable viewing at any time.
-- **Live Class Tracking:** A real-time indicator shows the time remaining for the currently active class.
-- **Class Reminders:** Automatically sends a toast notification 5 minutes before a class is about to start.
-- **AI-Powered Study Assistant:** Get intelligent study tips and resource suggestions for any subject, powered by Google's Generative AI.
-- **Persistent Notes:** Add and save personal notes, reminders, or to-do items for each class. Your notes are saved locally in your browser.
-- **Offline Functionality (PWA):** ClassSync is a Progressive Web App (PWA), meaning it can be "installed" on your device and will work even with a poor or non-existent internet connection.
+- Weekly timetable with a live countdown for the current class.
+- Subject syllabi and notes, saved locally on your device.
+- Android notifications five minutes before class and when the current period ends.
+- Optional study suggestions, powered by the Gemini API.
+- KIT ERP logo link and a built-in link to download the latest Android app.
 
-## Technologies Used
+Notes are stored in your browser on web and on your device on Android; they are not uploaded or synced. Android notifications require notification permission.
 
-- **Framework:** [Next.js](https://nextjs.org/) (with App Router)
-- **Language:** [TypeScript](https://www.typescriptlang.org/)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **UI Components:** [ShadCN UI](https://ui.shadcn.com/)
-- **AI/Generative Features:** [Genkit](https://firebase.google.com/docs/genkit)
-- **Offline Support:** [`@ducanh2912/next-pwa`](https://www.npmjs.com/package/@ducanh2912/next-pwa)
-- **Theming:** [`next-themes`](https://www.npmjs.com/package/next-themes)
-- **Icons:** [Lucide React](https://lucide.dev/)
+## Install the Android app
 
-## Getting Started
+Download the [latest ClassSync APK](https://github.com/Code-Ninja007/SmartTimeTable/releases/latest/download/ClassSync.apk) on your Android device, open the downloaded file, and confirm installation. Android may ask you to allow installs from your browser or file manager.
 
-To run the project locally, follow these steps:
+## Local development
 
-1.  **Clone the repository:**
-    ```bash
-    git clone <repository-url>
-    ```
+Install the web dependencies from the repository root and the API dependencies from `api/`:
 
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
+```sh
+npm install
+npm install --prefix api
+npm install --prefix mobile
+```
 
-3.  **Run the development server:**
-    ```bash
-    npm run dev
-    ```
+For local AI suggestions, create `api/.env` based on `api/.env.example` and set `GEMINI_API_KEY` to a key from [Google AI Studio](https://aistudio.google.com/app/apikey). The API reads the key; it is never bundled in the web or Android app.
 
-Open [http://localhost:9002](http://localhost:9002) with your browser to see the result.
+Start the API and web app in separate terminals:
+
+```sh
+npm run api:dev
+npm run dev
+```
+
+Open [http://localhost:9002](http://localhost:9002). Set `CLASSYNC_API_URL=http://localhost:4000` in the root `.env.local` for the web app to call the local API.
+
+### Android development / Expo Go
+
+Copy `mobile/.env.example` to `mobile/.env` and set `EXPO_PUBLIC_API_URL` to the API address. For a physical phone, use your computer's LAN IP (for example, `http://192.168.1.25:4000`), not `localhost`. Start the API so the phone can reach it, then run:
+
+```sh
+npm run mobile
+```
+
+Scan the QR code with Expo Go. Android notes are stored locally on that device. Reminders are local notifications and require notification permission.
+
+## Deployment
+
+### Web on Vercel
+
+Import the repository into Vercel with the repository root as the project root. Set `CLASSYNC_API_URL` to the public Railway API URL (without a trailing slash), then deploy. The web app remains a Next.js app.
+
+### Gemini API on Railway
+
+Create a Railway service from this repository and set its **Root Directory** to `/api`. Railway uses `api/railway.toml`; set `GEMINI_API_KEY` in the Railway service variables. Optionally set `GEMINI_MODEL` (defaults to `googleai/gemini-3.8-flash`) and `ALLOWED_ORIGINS` to comma-separated browser origins. Railway supplies `PORT`; `/health` is the health-check endpoint. Do not put the Gemini key in Vercel's public variables or Expo's `EXPO_PUBLIC_*` variables.
+
+### Android APK with EAS
+
+In the Expo dashboard, create `EXPO_PUBLIC_API_URL` for the **preview** EAS environment and set it to the public Railway API URL. Then install and authenticate with EAS CLI and configure the EAS project:
+
+```sh
+npm install --global eas-cli
+cd mobile
+eas login
+eas build:configure
+eas build --platform android --profile preview
+```
+
+The `preview` profile creates an installable APK. Expo Go is for development previews; an EAS build is needed for a standalone APK. Builds and deployments require the relevant Vercel, Railway, or Expo account access.
